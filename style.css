@@ -13,7 +13,7 @@ body {
 	float: left;
 	display: inline-block;
 	background-color: #444;
-	width: 900px;
+	width: 800px;
 	height: 100%;
 }
 
@@ -21,7 +21,7 @@ body {
 	float: left;
 	display: inline-block;
 	background-color: #666;
-	width: 300px;
+	width: 400px;
 	height: 100%;
 }
 
@@ -31,10 +31,17 @@ body {
 	text-align: right;
 }
 
+#rightColumn span {
+	display: inline-block;
+	width: 150px;
+}
+
+#rightColumn input {
+	width: 40px;
+}
 
 #canvas {
 	background-color: #000;
-	margin: 10px;
 }
 
 #explodeButton {
