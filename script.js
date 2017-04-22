@@ -147,35 +147,71 @@ window.onload = function() {
 
 	
 	settings1Button.addEventListener('click', function() {
-		console.log('settings for small explosion');
+		numberOfParticles.value = 100;
+		lifeTime.value = 30;
+		minStartSize.value = 5;
+		maxStartSize.value = 15;
+		sizeChange.value = 0.9;
+		minStartSpeed.value = 0.5;
+		maxStartSpeed.value = 2.5;
+		speedChange.value = 0.9;
+		startColorR.value = 255;
+		startColorG.value = 255;
+		startColorB.value = 160;
+		startColorA.value = 1;
+		colorRChange.value = 5;
+		colorGChange.value = 20;
+		colorBChange.value = 40;
+		colorAChange.value = 0.06;
+		secondaryExplosion.checked = false;
+		secondaryExplosionDelay.disabled = true;
+		secondaryExplosionSpan.style.color = '#999';
+		tertiaryExplosion.checked = false;
+		tertiaryExplosionDelay.disabled = true;
+		tertiaryExplosionSpan.style.color = '#999';
+		secondaryExplosionDelay.value = 100;
+		tertiaryExplosionDelay.value = 200;
+		shockwaveCheckbox.checked = true;
+		enableShockwaveFields();
+		shockwaveLifeTime.value = 50;
+		shockwaveStartSize.value = 15;
+		shockwaveSizeChange.value = 2;
+		shockwaveStartColorR.value = 100;
+		shockwaveStartColorG.value = 0;
+		shockwaveStartColorB.value = 0;
+		shockwaveStartColorA.value = 1;
+		shockwaveColorRChange.value = 5;
+		shockwaveColorGChange.value = 0;
+		shockwaveColorBChange.value = 0;
+		shockwaveColorAChange.value = 0.1;
 	});
 	
 	
 	settings2Button.addEventListener('click', function() {
-		numberOfParticles.value = 50;
+		numberOfParticles.value = 70;
 		lifeTime.value = 30;
-		minStartSize.value = 10;
-		maxStartSize.value = 28;
+		minStartSize.value = 8;
+		maxStartSize.value = 23;
 		sizeChange.value = 0.9;
 		minStartSpeed.value = 1;
 		maxStartSpeed.value = 4;
 		speedChange.value = 0.91;
 		startColorR.value = 255;
 		startColorG.value = 255;
-		startColorB.value = 120;
+		startColorB.value = 140;
 		startColorA.value = 1;
 		colorRChange.value = 5;
-		colorGChange.value = 20;
+		colorGChange.value = 30;
 		colorBChange.value = 40;
-		colorAChange.value = 0.03;
+		colorAChange.value = 0.07;
 		secondaryExplosion.checked = true;
 		secondaryExplosionDelay.disabled = false;
 		secondaryExplosionSpan.style.color = '#ddd';
 		tertiaryExplosion.checked = true;
 		tertiaryExplosionDelay.disabled = false;
 		tertiaryExplosionSpan.style.color = '#ddd';
-		secondaryExplosionDelay.value = 100;
-		tertiaryExplosionDelay.value = 200;
+		secondaryExplosionDelay.value = 120;
+		tertiaryExplosionDelay.value = 150;
 		shockwaveCheckbox.checked = true;
 		enableShockwaveFields();
 		shockwaveLifeTime.value = 50;
@@ -193,7 +229,43 @@ window.onload = function() {
 	
 	
 	settings3Button.addEventListener('click', function() {
-		console.log('settings for big explosion');
+		numberOfParticles.value = 120;
+		lifeTime.value = 30;
+		minStartSize.value = 10;
+		maxStartSize.value = 30;
+		sizeChange.value = 0.95;
+		minStartSpeed.value = 1;
+		maxStartSpeed.value = 9;
+		speedChange.value = 0.9;
+		startColorR.value = 255;
+		startColorG.value = 220;
+		startColorB.value = 100;
+		startColorA.value = 1;
+		colorRChange.value = 5;
+		colorGChange.value = 20;
+		colorBChange.value = 40;
+		colorAChange.value = 0.06;
+		secondaryExplosion.checked = true;
+		secondaryExplosionDelay.disabled = false;
+		secondaryExplosionSpan.style.color = '#ddd';
+		tertiaryExplosion.checked = false;
+		tertiaryExplosionDelay.disabled = true;
+		tertiaryExplosionSpan.style.color = '#999';
+		secondaryExplosionDelay.value = 100;
+		tertiaryExplosionDelay.value = 200;
+		shockwaveCheckbox.checked = true;
+		enableShockwaveFields();
+		shockwaveLifeTime.value = 50;
+		shockwaveStartSize.value = 10;
+		shockwaveSizeChange.value = 10;
+		shockwaveStartColorR.value = 100;
+		shockwaveStartColorG.value = 0;
+		shockwaveStartColorB.value = 0;
+		shockwaveStartColorA.value = 1;
+		shockwaveColorRChange.value = 5;
+		shockwaveColorGChange.value = 0;
+		shockwaveColorBChange.value = 0;
+		shockwaveColorAChange.value = 0.07;
 	});
 	
 	
