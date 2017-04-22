@@ -30,13 +30,6 @@ body {
 	overflow-y: scroll;
 }
 
-#myBox {
-	margin: 0px auto;
-	width: 1200px;
-	text-align: right;
-	color: #002f42;
-}
-
 #rightColumn span {
 	display: inline-block;
 	width: 180px;
@@ -90,4 +83,18 @@ hr {
 .settingsButton:hover {
 	background-color: #BBB;
 	transition: all 0.5s;
+}
+
+#myBox {
+	margin: 0px auto;
+	width: 1200px;
+	text-align: right;
+	color: #468499;
+	font-size: 13px;
+	margin-top: 3px;
+}
+
+#myBox > a {
+	color: #468499;
+	text-decoration: none;
 }

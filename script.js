@@ -115,6 +115,37 @@ window.onload = function() {
 	});
 	
 	
+	secondaryExplosion.addEventListener('change', function() {
+		if(this.checked) {
+			secondaryExplosionDelay.disabled = false;
+			secondaryExplosionSpan.style.color = '#ddd';
+		} else {
+			secondaryExplosionDelay.disabled = true;
+			secondaryExplosionSpan.style.color = '#999';
+		}
+	});
+	
+	
+	tertiaryExplosion.addEventListener('change', function() {
+		if(this.checked) {
+			tertiaryExplosionDelay.disabled = false;
+			tertiaryExplosionSpan.style.color = '#ddd';
+		} else {
+			tertiaryExplosionDelay.disabled = true;
+			tertiaryExplosionSpan.style.color = '#999';
+		}
+	});
+	
+	
+	shockwaveCheckbox.addEventListener('change', function() {
+		if(this.checked) {
+			enableShockwaveFields();
+		} else {
+			disableShockwaveFields();
+		}
+	});
+
+	
 	settings1Button.addEventListener('click', function() {
 		console.log('settings for small explosion');
 	});
@@ -138,10 +169,15 @@ window.onload = function() {
 		colorBChange.value = 40;
 		colorAChange.value = 0.03;
 		secondaryExplosion.checked = true;
+		secondaryExplosionDelay.disabled = false;
+		secondaryExplosionSpan.style.color = '#ddd';
 		tertiaryExplosion.checked = true;
+		tertiaryExplosionDelay.disabled = false;
+		tertiaryExplosionSpan.style.color = '#ddd';
 		secondaryExplosionDelay.value = 100;
 		tertiaryExplosionDelay.value = 200;
 		shockwaveCheckbox.checked = true;
+		enableShockwaveFields();
 		shockwaveLifeTime.value = 50;
 		shockwaveStartSize.value = 20;
 		shockwaveSizeChange.value = 3;
@@ -179,10 +215,15 @@ window.onload = function() {
 		colorBChange.value = 0;
 		colorAChange.value = 0;
 		secondaryExplosion.checked = false;
+		secondaryExplosionDelay.disabled = true;
+		secondaryExplosionSpan.style.color = '#999';
 		tertiaryExplosion.checked = false;
+		tertiaryExplosionDelay.disabled = true;
+		tertiaryExplosionSpan.style.color = '#999';
 		secondaryExplosionDelay.value = 100;
 		tertiaryExplosionDelay.value = 200;
 		shockwaveCheckbox.checked = true;
+		enableShockwaveFields();
 		shockwaveLifeTime.value = 30;
 		shockwaveStartSize.value = 20;
 		shockwaveSizeChange.value = 2;
@@ -199,9 +240,10 @@ window.onload = function() {
 	
 	var animateExplosions = setInterval(function(){
 		ctx.clearRect(0,0,800, 600);
-		ctx.fillStyle = 'white';
-		ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
-		ctx.fillText('Number of shockwaves: ' + Object.keys(shockwaveList).length, 10, 35);
+		
+		//ctx.fillStyle = 'white';
+		//ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
+		//ctx.fillText('Number of shockwaves: ' + Object.keys(shockwaveList).length, 10, 35);
 		
 		// draw and update shockwaves
 		for (var i in shockwaveList) {
@@ -324,5 +366,42 @@ function Shockwave(id, x, y) {
 		this.colorB -= this.colorBChange;
 		this.colorA -= this.colorAChange;
 	}
-	
+}
+
+
+function enableShockwaveFields() {
+	shockwaveLifeTime.disabled = false;
+	shockwaveStartSize.disabled = false;
+	shockwaveSizeChange.disabled = false;
+	shockwaveStartColorR.disabled = false;
+	shockwaveStartColorG.disabled = false;
+	shockwaveStartColorB.disabled = false;
+	shockwaveStartColorA.disabled = false;
+	shockwaveColorRChange.disabled = false;
+	shockwaveColorGChange.disabled = false;
+	shockwaveColorBChange.disabled = false;
+	shockwaveColorAChange.disabled = false;
+	var shockwaveSpans = document.getElementsByClassName('shockwaveSpan');
+	for (var i = 0; i < shockwaveSpans.length; i++) {
+		shockwaveSpans[i].style.color = '#ddd';
+	}
+}
+
+
+function disableShockwaveFields() {
+	shockwaveLifeTime.disabled = true;
+	shockwaveStartSize.disabled = true;
+	shockwaveSizeChange.disabled = true;
+	shockwaveStartColorR.disabled = true;
+	shockwaveStartColorG.disabled = true;
+	shockwaveStartColorB.disabled = true;
+	shockwaveStartColorA.disabled = true;
+	shockwaveColorRChange.disabled = true;
+	shockwaveColorGChange.disabled = true;
+	shockwaveColorBChange.disabled = true;
+	shockwaveColorAChange.disabled = true;
+	var shockwaveSpans = document.getElementsByClassName('shockwaveSpan');
+	for (var i = 0; i < shockwaveSpans.length; i++) {
+		shockwaveSpans[i].style.color = '#999';
+	}
 }
