@@ -20,6 +20,10 @@ var colorGChange;
 var colorBChange;
 var colorAChange;
 
+var secondaryExplosion;
+var secondaryExplosionDelay;
+var tertiaryExplosion;
+var tertiaryExplosionDelay;
 
 
 window.onload = function() {
@@ -46,19 +50,42 @@ window.onload = function() {
 	colorBChange = document.getElementById('colorBChange');
 	colorAChange = document.getElementById('colorAChange');
 	
+	secondaryExplosion = document.getElementById('secondaryExplosion');
+	tertiaryExplosion = document.getElementById('tertiaryExplosion');
+	secondaryExplosionDelay = document.getElementById('secondaryExplosionDelay');
+	tertiaryExplosionDelay = document.getElementById('tertiaryExplosionDelay');
+	
 
 	explodeButton.addEventListener("click", function() {
 		var id = Math.random();
-		var explosion = new Explosion(id);
+		var explosion = new Explosion(id, 400, 300);
 		explosionList[id] = explosion;
 		explosion.initParticles();
+		
+		if(secondaryExplosion.checked) {
+			setTimeout(function() {
+				var id = Math.random();
+				var explosion = new Explosion(id, 402, 298);
+				explosionList[id] = explosion;
+				explosion.initParticles();
+			}, secondaryExplosionDelay.value);
+		}
+		
+		if(tertiaryExplosion.checked) {
+			setTimeout(function() {
+				var id = Math.random();
+				var explosion = new Explosion(id, 400, 302);
+				explosionList[id] = explosion;
+				explosion.initParticles();
+			}, tertiaryExplosionDelay.value);
+		}
 	});
 	
 	
 	var animateExplosions = setInterval(function(){
-		ctx.fillStyle = 'white';
 		ctx.clearRect(0,0,800, 600);
-		ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
+		//ctx.fillStyle = 'white';
+		//ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
 		
 		// update explosions
 		for (var i in explosionList) {
@@ -66,7 +93,6 @@ window.onload = function() {
 			explosion.drawExplosion();
 			explosion.updateParticles();
 			
-			// update explosion lifetime and if needed, remove it
 			explosion.lifeTime--;
 			if(explosion.lifeTime < 0) {
 				delete explosionList[i];
@@ -98,10 +124,10 @@ function Particle(x, y) {
 
 
 
-function Explosion(id) {
+function Explosion(id, x, y) {
 	this.id = id;
-	this.x = 400;
-	this.y = 300;
+	this.x = x;
+	this.y = y;
 	this.lifeTime = lifeTime.value;
 	this.particleCount = numberOfParticles.value;
 	this.particleList = [];
@@ -131,6 +157,11 @@ function Explosion(id) {
 			particle.y += Math.cos(particle.angle) * particle.speed;
 			particle.size *= particle.sizeChange;
 			particle.speed *= particle.speedChange;
+			
+			particle.colorR -= particle.colorRChange;
+			particle.colorG -= particle.colorGChange;
+			particle.colorB -= particle.colorBChange;
+			particle.colorA -= particle.colorAChange;
 		}
 	}
 }

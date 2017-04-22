@@ -1,5 +1,6 @@
 body {
-	background-color: #777;
+	background-color: #001421;
+	font-family: calibri;
 }
 
 #mainBox {
@@ -18,10 +19,12 @@ body {
 }
 
 #rightColumn {
+	padding-left: 5px;
+	padding-right: 5px;
 	float: left;
 	display: inline-block;
-	background-color: #666;
-	width: 400px;
+	background-color: #002f42;
+	width: 390px;
 	height: 100%;
 }
 
@@ -29,15 +32,21 @@ body {
 	margin: 0px auto;
 	width: 1200px;
 	text-align: right;
+	color: #002f42;
 }
 
 #rightColumn span {
 	display: inline-block;
-	width: 150px;
+	width: 180px;
 }
 
-#rightColumn input {
+#rightColumn input[type=text] {
+	border: none;
 	width: 40px;
+}
+
+#rightColumn input[type=checkbox] {
+	width: 20px;
 }
 
 #canvas {
@@ -45,12 +54,17 @@ body {
 }
 
 #explodeButton {
-	margin-left: 5%;
-	width: 90%;
+	width: 100%;
 	height: 30px;
+	border: none;
 }
 
-
+hr {
+	border: none;
+	border-bottom: 1px dashed black;
+	margin-top: 5px;
+	margin-bottom: 4px;
+}
 
 
 

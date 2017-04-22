@@ -16,24 +16,29 @@
 				<canvas id="canvas" width="800px"	height="600px">Sorry, your ancient browser doesn't support canvas elements.</canvas>
 			</div>
 			<div id="rightColumn">
-				Explosion settings:<br>
-				<br>
-				<span>Number of particles</span><input type="text" id="numberOfParticles" value="100"><br>
-				<span>Life span</span><input type="text" id="lifeTime" value="50"><br>
+				SETTINGS
+				<hr>
+				<span>Number of particles</span><input type="text" id="numberOfParticles" value="50"><br>
+				<span>Life span</span><input type="text" id="lifeTime" value="30"><br>
 				<span>Min. start size</span><input type="text" id="minStartSize" value="10"><br>
-				<span>Max. start size</span><input type="text" id="maxStartSize" value="30"><br>
+				<span>Max. start size</span><input type="text" id="maxStartSize" value="28"><br>
 				<span>Size change</span><input type="text" id="sizeChange" value="0.9"><br>
 				<span>Min. start speed</span><input type="text" id="minStartSpeed" value="1"><br>
 				<span>Max. start speed</span><input type="text" id="maxStartSpeed" value="4"><br>
-				<span>Speed change</span><input type="text" id="speedChange" value="0.9"><br>
-				<span>Start color R</span><input type="text" id="startColorR" value="127"><br>
-				<span>Start color G</span><input type="text" id="startColorG" value="127"><br>
-				<span>Start color B</span><input type="text" id="startColorB" value="127"><br>
-				<span>Start color A</span><input type="text" id="startColorA" value="0.5"><br>
-				<span>Color change R</span><input type="text" id="colorRChange" value="0"><br>
-				<span>Color change G</span><input type="text" id="colorGChange" value="0"><br>
-				<span>Color change B</span><input type="text" id="colorBChange" value="0"><br>
-				<span>Color change A</span><input type="text" id="colorAChange" value="0"><br>
+				<span>Speed change</span><input type="text" id="speedChange" value="0.91"><br>
+				<span>Start color R</span><input type="text" id="startColorR" value="255"><br>
+				<span>Start color G</span><input type="text" id="startColorG" value="255"><br>
+				<span>Start color B</span><input type="text" id="startColorB" value="120"><br>
+				<span>Start color A</span><input type="text" id="startColorA" value="1"><br>
+				<span>Color change R</span><input type="text" id="colorRChange" value="5"><br>
+				<span>Color change G</span><input type="text" id="colorGChange" value="20"><br>
+				<span>Color change B</span><input type="text" id="colorBChange" value="40"><br>
+				<span>Color change A</span><input type="text" id="colorAChange" value="0.03"><br>
+				<hr>
+				<input type="checkbox" id="secondaryExplosion" checked><span>Secondary explosion after</span><input type="text" id="secondaryExplosionDelay" value="150"> ms<br>
+				<input type="checkbox" id="tertiaryExplosion" checked><span>Tertiary explosion after</span><input type="text" id="tertiaryExplosionDelay" value="250"> ms<br>
+				<hr>
+				<input type="checkbox" id="shockwave" checked><span>Shockwave</span>
 				
 				<br>
 				<button id="explodeButton">Explode!</button>
