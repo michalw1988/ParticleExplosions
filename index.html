@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pl">
 	<head>
-		<title>Particle Explosions</title>
+		<title>Particle Explosion Sandbox</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +16,7 @@
 				<canvas id="canvas" width="800px"	height="600px">Sorry, your ancient browser doesn't support canvas elements.</canvas>
 			</div>
 			<div id="rightColumn">
-				SETTINGS
+				<strong>SETTINGS</strong>
 				<hr>
 				<span>Number of particles</span><input type="text" id="numberOfParticles" value="50"><br>
 				<span>Life span</span><input type="text" id="lifeTime" value="30"><br>
@@ -35,19 +35,35 @@
 				<span>Color change B</span><input type="text" id="colorBChange" value="40"><br>
 				<span>Color change A</span><input type="text" id="colorAChange" value="0.03"><br>
 				<hr>
-				<input type="checkbox" id="secondaryExplosion" checked><span>Secondary explosion after</span><input type="text" id="secondaryExplosionDelay" value="150"> ms<br>
-				<input type="checkbox" id="tertiaryExplosion" checked><span>Tertiary explosion after</span><input type="text" id="tertiaryExplosionDelay" value="250"> ms<br>
+				<input type="checkbox" id="secondaryExplosion" checked><span>Secondary explosion after</span><input type="text" id="secondaryExplosionDelay" value="100"> ms<br>
+				<input type="checkbox" id="tertiaryExplosion" checked><span>Tertiary explosion after</span><input type="text" id="tertiaryExplosionDelay" value="200"> ms<br>
 				<hr>
-				<input type="checkbox" id="shockwave" checked><span>Shockwave</span>
-				
-				<br>
+				<input type="checkbox" id="shockwave" checked><span>Shockwave</span><br>
+				<span>Life time</span><input type="text" id="shockwaveLifeTime" value="50"><br>
+				<span>Start size</span><input type="text" id="shockwaveStartSize" value="20"><br>
+				<span>Size change</span><input type="text" id="shockwaveSizeChange" value="3"><br>
+				<span>Start color R</span><input type="text" id="shockwaveStartColorR" value="100"><br>
+				<span>Start color G</span><input type="text" id="shockwaveStartColorG" value="0"><br>
+				<span>Start color B</span><input type="text" id="shockwaveStartColorB" value="0"><br>
+				<span>Start color A</span><input type="text" id="shockwaveStartColorA" value="1"><br>
+				<span>Color change R</span><input type="text" id="shockwaveColorRChange" value="5"><br>
+				<span>Color change G</span><input type="text" id="shockwaveColorGChange" value="0"><br>
+				<span>Color change B</span><input type="text" id="shockwaveColorBChange" value="0"><br>
+				<span>Color change A</span><input type="text" id="shockwaveColorAChange" value="0.04"><br>
+				<hr>
+				<strong>LOAD SETTINGS FOR</strong><br>
+				<button class="settingsButton" id="settings1Button">Small explosion</button>
+				<button class="settingsButton" id="settings2Button">Medium explosion</button>
+				<button class="settingsButton" id="settings3Button">Big explosion</button>
+				<button class="settingsButton" id="settings4Button">Basic particles</button>
+				<hr>
 				<button id="explodeButton">Explode!</button>
 			</div>
 		</div>
 		
 		<!-- author info -->
 		<div id="myBox">
-			Coded by Michał Wiśniewski (MW Projects)
+			Coded by Michał Wiśniewski [MW Projects]
 		</div>
 		
 	</body>

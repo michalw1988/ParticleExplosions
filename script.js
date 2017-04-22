@@ -2,6 +2,7 @@ var explodeButton;
 var canvas;
 var ctx;
 var explosionList = {};
+var shockwaveList = {};
 
 var numberOfParticles;
 var lifeTime;
@@ -25,17 +26,30 @@ var secondaryExplosionDelay;
 var tertiaryExplosion;
 var tertiaryExplosionDelay;
 
+var shockwaveCheckbox;
+var shockwaveLifeTime;
+var shockwaveStartSize;
+var shockwaveSizeChange;
+var shockwaveStartColorR;
+var shockwaveStartColorG;
+var shockwaveStartColorB;
+var shockwaveStartColorA;
+var shockwaveColorRChange;
+var shockwaveColorGChange;
+var shockwaveColorBChange;
+var shockwaveColorAChange;
+
+
 
 window.onload = function() {
 	
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 	explodeButton = document.getElementById('explodeButton');
-	numberOfParticles = document.getElementById('numberOfParticles');
-	particleSize = document.getElementById('particleSize');
 	
-	minStartSize = document.getElementById('minStartSize');
+	numberOfParticles = document.getElementById('numberOfParticles');
 	lifeTime = document.getElementById('lifeTime');
+	minStartSize = document.getElementById('minStartSize');
 	maxStartSize = document.getElementById('maxStartSize');
 	sizeChange = document.getElementById('sizeChange');
 	minStartSpeed = document.getElementById('minStartSpeed');
@@ -55,8 +69,21 @@ window.onload = function() {
 	secondaryExplosionDelay = document.getElementById('secondaryExplosionDelay');
 	tertiaryExplosionDelay = document.getElementById('tertiaryExplosionDelay');
 	
+	shockwaveCheckbox = document.getElementById('shockwave');
+	shockwaveLifeTime = document.getElementById('shockwaveLifeTime');
+	shockwaveStartSize = document.getElementById('shockwaveStartSize');
+	shockwaveSizeChange = document.getElementById('shockwaveSizeChange');
+	shockwaveStartColorR = document.getElementById('shockwaveStartColorR');
+	shockwaveStartColorG = document.getElementById('shockwaveStartColorG');
+	shockwaveStartColorB = document.getElementById('shockwaveStartColorB');
+	shockwaveStartColorA = document.getElementById('shockwaveStartColorA');
+	shockwaveColorRChange = document.getElementById('shockwaveColorRChange');
+	shockwaveColorGChange = document.getElementById('shockwaveColorGChange');
+	shockwaveColorBChange = document.getElementById('shockwaveColorBChange');
+	shockwaveColorAChange = document.getElementById('shockwaveColorAChange');
+	
 
-	explodeButton.addEventListener("click", function() {
+	explodeButton.addEventListener('click', function() {
 		var id = Math.random();
 		var explosion = new Explosion(id, 400, 300);
 		explosionList[id] = explosion;
@@ -79,15 +106,116 @@ window.onload = function() {
 				explosion.initParticles();
 			}, tertiaryExplosionDelay.value);
 		}
+		
+		if(shockwaveCheckbox.checked) {
+			var id = Math.random();
+			var shockwave = new Shockwave(id, 400, 300);
+			shockwaveList[id] = shockwave;
+		}
+	});
+	
+	
+	settings1Button.addEventListener('click', function() {
+		console.log('settings for small explosion');
+	});
+	
+	
+	settings2Button.addEventListener('click', function() {
+		numberOfParticles.value = 50;
+		lifeTime.value = 30;
+		minStartSize.value = 10;
+		maxStartSize.value = 28;
+		sizeChange.value = 0.9;
+		minStartSpeed.value = 1;
+		maxStartSpeed.value = 4;
+		speedChange.value = 0.91;
+		startColorR.value = 255;
+		startColorG.value = 255;
+		startColorB.value = 120;
+		startColorA.value = 1;
+		colorRChange.value = 5;
+		colorGChange.value = 20;
+		colorBChange.value = 40;
+		colorAChange.value = 0.03;
+		secondaryExplosion.checked = true;
+		tertiaryExplosion.checked = true;
+		secondaryExplosionDelay.value = 100;
+		tertiaryExplosionDelay.value = 200;
+		shockwaveCheckbox.checked = true;
+		shockwaveLifeTime.value = 50;
+		shockwaveStartSize.value = 20;
+		shockwaveSizeChange.value = 3;
+		shockwaveStartColorR.value = 100;
+		shockwaveStartColorG.value = 0;
+		shockwaveStartColorB.value = 0;
+		shockwaveStartColorA.value = 1;
+		shockwaveColorRChange.value = 5;
+		shockwaveColorGChange.value = 0;
+		shockwaveColorBChange.value = 0;
+		shockwaveColorAChange.value = 0.04;
+	});
+	
+	
+	settings3Button.addEventListener('click', function() {
+		console.log('settings for big explosion');
+	});
+	
+	
+	settings4Button.addEventListener('click', function() {
+		numberOfParticles.value = 50;
+		lifeTime.value = 30;
+		minStartSize.value = 10;
+		maxStartSize.value = 10;
+		sizeChange.value = 1;
+		minStartSpeed.value = 2;
+		maxStartSpeed.value = 2;
+		speedChange.value = 1;
+		startColorR.value = 255;
+		startColorG.value = 0;
+		startColorB.value = 0;
+		startColorA.value = 1;
+		colorRChange.value = 0;
+		colorGChange.value = 0;
+		colorBChange.value = 0;
+		colorAChange.value = 0;
+		secondaryExplosion.checked = false;
+		tertiaryExplosion.checked = false;
+		secondaryExplosionDelay.value = 100;
+		tertiaryExplosionDelay.value = 200;
+		shockwaveCheckbox.checked = true;
+		shockwaveLifeTime.value = 30;
+		shockwaveStartSize.value = 20;
+		shockwaveSizeChange.value = 2;
+		shockwaveStartColorR.value = 100;
+		shockwaveStartColorG.value = 0;
+		shockwaveStartColorB.value = 0;
+		shockwaveStartColorA.value = 1;
+		shockwaveColorRChange.value = 0;
+		shockwaveColorGChange.value = 0;
+		shockwaveColorBChange.value = 0;
+		shockwaveColorAChange.value = 0;
 	});
 	
 	
 	var animateExplosions = setInterval(function(){
 		ctx.clearRect(0,0,800, 600);
-		//ctx.fillStyle = 'white';
-		//ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
+		ctx.fillStyle = 'white';
+		ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
+		ctx.fillText('Number of shockwaves: ' + Object.keys(shockwaveList).length, 10, 35);
 		
-		// update explosions
+		// draw and update shockwaves
+		for (var i in shockwaveList) {
+			var shockwave = shockwaveList[i];
+			shockwave.drawShockwave();
+			shockwave.updateShockwave();
+			
+			shockwave.lifeTime--;
+			if(shockwave.lifeTime < 0) {
+				delete shockwaveList[i];
+			}
+		}
+		
+		// draw and update explosions
 		for (var i in explosionList) {
 			var explosion = explosionList[i];
 			explosion.drawExplosion();
@@ -142,8 +270,7 @@ function Explosion(id, x, y) {
 	this.drawExplosion = function() {
 		for (var i = 0; i < this.particleList.length; i++) {
 			var particle = this.particleList[i];
-			ctx.fillStyle = 'rgba('+ particle.colorR +', '+ particle.colorG +', '+ particle.colorB +', '+ particle.colorA +')';
-			
+			ctx.fillStyle = 'rgba('+ particle.colorR +', '+ particle.colorG +', '+ particle.colorB +', '+ particle.colorA +')';	
 			ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI, false);
       ctx.fill();
@@ -157,11 +284,45 @@ function Explosion(id, x, y) {
 			particle.y += Math.cos(particle.angle) * particle.speed;
 			particle.size *= particle.sizeChange;
 			particle.speed *= particle.speedChange;
-			
 			particle.colorR -= particle.colorRChange;
 			particle.colorG -= particle.colorGChange;
 			particle.colorB -= particle.colorBChange;
 			particle.colorA -= particle.colorAChange;
 		}
 	}
+}
+
+
+
+function Shockwave(id, x, y) {
+	this.id = id;
+	this.x = x;
+	this.y = y;
+	this.lifeTime = shockwaveLifeTime.value;
+	this.size = shockwaveStartSize.value;
+	this.sizeChange = shockwaveSizeChange.value;
+	this.colorR = shockwaveStartColorR.value;
+	this.colorG = shockwaveStartColorG.value;
+	this.colorB = shockwaveStartColorB.value;
+	this.colorA = shockwaveStartColorA.value;
+	this.colorRChange = shockwaveColorRChange.value;
+	this.colorGChange = shockwaveColorGChange.value;
+	this.colorBChange = shockwaveColorBChange.value;
+	this.colorAChange = shockwaveColorAChange.value;
+	
+	this.drawShockwave = function() {
+		ctx.fillStyle = 'rgba('+ this.colorR +', '+ this.colorG +', '+ this.colorB +', '+ this.colorA +')';
+		ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+    ctx.fill();
+	}
+	
+	this.updateShockwave = function() {
+		this.size = parseFloat(this.size) + parseFloat(this.sizeChange);
+		this.colorR -= this.colorRChange;
+		this.colorG -= this.colorGChange;
+		this.colorB -= this.colorBChange;
+		this.colorA -= this.colorAChange;
+	}
+	
 }

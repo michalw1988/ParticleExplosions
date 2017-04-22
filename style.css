@@ -1,6 +1,7 @@
 body {
 	background-color: #001421;
 	font-family: calibri;
+	color: #ddd;
 }
 
 #mainBox {
@@ -26,6 +27,7 @@ body {
 	background-color: #002f42;
 	width: 390px;
 	height: 100%;
+	overflow-y: scroll;
 }
 
 #myBox {
@@ -54,17 +56,38 @@ body {
 }
 
 #explodeButton {
+	border: none;
 	width: 100%;
 	height: 30px;
-	border: none;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	transition: all 1s;
+}
+
+#explodeButton:hover {
+	background-color: #F11;
+	transition: all 1s;
 }
 
 hr {
 	border: none;
-	border-bottom: 1px dashed black;
+	border-bottom: 1px dashed white;
 	margin-top: 5px;
 	margin-bottom: 4px;
 }
 
+.settingsButton {
+	border: none;
+	width: 48%;
+	height: 30px;
+	margin: 2px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
 
-
+.settingsButton:hover {
+	background-color: #BBB;
+	transition: all 0.5s;
+}
