@@ -19,6 +19,10 @@ body {
 	height: 100%;
 }
 
+#canvas {
+	background-color: #000;
+}
+
 #rightColumn {
 	padding-left: 5px;
 	padding-right: 5px;
@@ -44,8 +48,11 @@ body {
 	width: 20px;
 }
 
-#canvas {
-	background-color: #000;
+hr {
+	border: none;
+	border-bottom: 1px dashed white;
+	margin-top: 5px;
+	margin-bottom: 4px;
 }
 
 #explodeButton {
@@ -61,13 +68,6 @@ body {
 #explodeButton:hover {
 	background-color: #F11;
 	transition: all 1s;
-}
-
-hr {
-	border: none;
-	border-bottom: 1px dashed white;
-	margin-top: 5px;
-	margin-bottom: 4px;
 }
 
 .settingsButton {

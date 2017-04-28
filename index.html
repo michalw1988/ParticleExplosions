@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 	<head>
 		<title>Particle Explosion Sandbox</title>
 		<meta charset="utf-8">
@@ -7,16 +7,29 @@
 
 		<!-- CSS and JS files -->
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script src="script.js"></script> 
+		<script src="globalVars.js"></script> 
+		<script src="main.js"></script> 
+		<script src="settingsManagement.js"></script> 
+		<script src="Particle.js"></script> 
+		<script src="SparksParticle.js"></script> 
+		<script src="Explosion.js"></script> 
+		<script src="Shockwave.js"></script> 
+		<script src="Sparks.js"></script> 
 	</head>
 	
 	<body>
 		<div id="mainBox">
+		
+			<!-- column for canvas -->
 			<div id="leftColumn">
-				<canvas id="canvas" width="800px"	height="600px">Sorry, your ancient browser doesn't support canvas elements.</canvas>
+				<canvas id="canvas" width="800px"	height="600px">Sorry, your browser doesn't support canvas.</canvas>
 			</div>
+			
+			<!-- column for settings -->
 			<div id="rightColumn">
 				<button id="explodeButton">Explode!</button>
+				
+				<!-- buttons -->
 				<hr>
 				<strong>LOAD SETTINGS FOR</strong>
 				<br>
@@ -25,6 +38,8 @@
 				<button class="settingsButton" id="settings3Button">Big explosion</button>
 				<button class="settingsButton" id="settings4Button">Medium with sparks</button>
 				<hr>
+				
+				<!-- explosion settings -->
 				<strong>CUSTOM SETTINGS</strong>
 				<br>
 				<span>Number of particles</span><input type="text" id="numberOfParticles" value="70"><br>
@@ -44,9 +59,13 @@
 				<span>Color change B</span><input type="text" id="colorBChange" value="40"><br>
 				<span>Color change A</span><input type="text" id="colorAChange" value="0.07"><br>
 				<hr>
+				
+				<!-- secondary and tertiary explosion settings -->
 				<input type="checkbox" id="secondaryExplosion" checked><span id="secondaryExplosionSpan">Secondary explosion after</span><input type="text" id="secondaryExplosionDelay" value="120"><br>
 				<input type="checkbox" id="tertiaryExplosion" checked><span id="tertiaryExplosionSpan">Tertiary explosion after</span><input type="text" id="tertiaryExplosionDelay" value="150"><br>
 				<hr>
+				
+				<!-- shockwave settings -->
 				<input type="checkbox" id="shockwave" checked><span>Shockwave</span><br>
 				<span class="shockwaveSpan">Life time</span><input type="text" id="shockwaveLifeTime" value="50"><br>
 				<span class="shockwaveSpan">Start size</span><input type="text" id="shockwaveStartSize" value="20"><br>
@@ -60,6 +79,8 @@
 				<span class="shockwaveSpan">Color change B</span><input type="text" id="shockwaveColorBChange" value="0"><br>
 				<span class="shockwaveSpan">Color change A</span><input type="text" id="shockwaveColorAChange" value="0.04"><br>
 				<hr>
+				
+				<!-- sparks settings -->
 				<input type="checkbox" id="sparksCheckbox" checked><span>Sparks</span><br>
 				<span class="sparksSpan">Number of particles</span><input type="text" id="sparksNumberOfParticles" value="8"><br>
 				<span class="sparksSpan">Number of tail particles</span><input type="text" id="sparksNumberOfTailParticles" value="15"><br>
