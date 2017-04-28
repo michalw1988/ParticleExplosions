@@ -16,8 +16,17 @@
 				<canvas id="canvas" width="800px"	height="600px">Sorry, your ancient browser doesn't support canvas elements.</canvas>
 			</div>
 			<div id="rightColumn">
-				<strong>SETTINGS</strong>
+				<button id="explodeButton">Explode!</button>
 				<hr>
+				<strong>LOAD SETTINGS FOR</strong>
+				<br>
+				<button class="settingsButton" id="settings1Button">Small explosion</button>
+				<button class="settingsButton" id="settings2Button">Medium explosion</button>
+				<button class="settingsButton" id="settings3Button">Big explosion</button>
+				<button class="settingsButton" id="settings4Button">Medium with sparks</button>
+				<hr>
+				<strong>CUSTOM SETTINGS</strong>
+				<br>
 				<span>Number of particles</span><input type="text" id="numberOfParticles" value="70"><br>
 				<span>Life span</span><input type="text" id="lifeTime" value="30"><br>
 				<span>Min. start size</span><input type="text" id="minStartSize" value="8"><br>
@@ -51,13 +60,25 @@
 				<span class="shockwaveSpan">Color change B</span><input type="text" id="shockwaveColorBChange" value="0"><br>
 				<span class="shockwaveSpan">Color change A</span><input type="text" id="shockwaveColorAChange" value="0.04"><br>
 				<hr>
-				<strong>LOAD SETTINGS FOR</strong><br>
-				<button class="settingsButton" id="settings1Button">Small explosion</button>
-				<button class="settingsButton" id="settings2Button">Medium explosion</button>
-				<button class="settingsButton" id="settings3Button">Big explosion</button>
-				<button class="settingsButton" id="settings4Button">Basic particles</button>
+				<input type="checkbox" id="sparksCheckbox" checked><span>Sparks</span><br>
+				<span class="sparksSpan">Number of particles</span><input type="text" id="sparksNumberOfParticles" value="8"><br>
+				<span class="sparksSpan">Number of tail particles</span><input type="text" id="sparksNumberOfTailParticles" value="15"><br>
+				<span class="sparksSpan">Life span</span><input type="text" id="sparksLifeSpan" value="50"><br>
+				<span class="sparksSpan">Min. size</span><input type="text" id="sparksMinSize" value="0.5"><br>
+				<span class="sparksSpan">Max. size</span><input type="text" id="sparksMaxSize" value="2"><br>
+				<span class="sparksSpan">Tail size change</span><input type="text" id="sparksTailSizeChange" value="0.9"><br>
+				<span class="sparksSpan">Min. speed</span><input type="text" id="sparksMinSpeed" value="2"><br>
+				<span class="sparksSpan">Max. speed</span><input type="text" id="sparksMaxSpeed" value="6"><br>
+				<span class="sparksSpan">Tail speed change</span><input type="text" id="sparksTailSpeedChange" value="0.97"><br>
+				<span class="sparksSpan">Start color R</span><input type="text" id="sparksStartColorR" value="200"><br>
+				<span class="sparksSpan">Start color G</span><input type="text" id="sparksStartColorG" value="120"><br>
+				<span class="sparksSpan">Start color B</span><input type="text" id="sparksStartColorB" value="0"><br>
+				<span class="sparksSpan">Start color A</span><input type="text" id="sparksStartColorA" value="1"><br>
+				<span class="sparksSpan">Color change R</span><input type="text" id="sparksColorChangeR" value="4"><br>
+				<span class="sparksSpan">Color change G</span><input type="text" id="sparksColorChangeG" value="6"><br>
+				<span class="sparksSpan">Color change B</span><input type="text" id="sparksColorChangeB" value="0"><br>
+				<span class="sparksSpan">Color change A</span><input type="text" id="sparksColorChangeA" value="0.035"><br>
 				<hr>
-				<button id="explodeButton">Explode!</button>
 			</div>
 		</div>
 		

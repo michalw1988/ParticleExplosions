@@ -3,6 +3,7 @@ var canvas;
 var ctx;
 var explosionList = {};
 var shockwaveList = {};
+var sparksList = {};
 
 var numberOfParticles;
 var lifeTime;
@@ -38,6 +39,25 @@ var shockwaveColorRChange;
 var shockwaveColorGChange;
 var shockwaveColorBChange;
 var shockwaveColorAChange;
+
+var sparksCheckbox;
+var sparksNumberOfParticles;
+var sparksNumberOfTailParticles;
+var sparksLifeSpan;
+var sparksMinSize;
+var sparksMaxSize;
+var sparksTailSizeChange;
+var sparksMinSpeed;
+var sparksMaxSpeed;
+var sparksTailSpeedChange;
+var sparksStartColorR;
+var sparksStartColorG;
+var sparksStartColorB;
+var sparksStartColorA;
+var sparksColorChangeR;
+var sparksColorChangeG;
+var sparksColorChangeB;
+var sparksColorChangeA;
 
 
 
@@ -82,6 +102,26 @@ window.onload = function() {
 	shockwaveColorBChange = document.getElementById('shockwaveColorBChange');
 	shockwaveColorAChange = document.getElementById('shockwaveColorAChange');
 	
+	sparksCheckbox = document.getElementById('sparksCheckbox');
+	sparksNumberOfParticles = document.getElementById('sparksNumberOfParticles');
+	sparksNumberOfTailParticles = document.getElementById('sparksNumberOfTailParticles');
+	sparksLifeSpan = document.getElementById('sparksLifeSpan');
+	sparksMinSize = document.getElementById('sparksMinSize');
+	sparksMaxSize = document.getElementById('sparksMaxSize');
+	sparksTailSizeChange = document.getElementById('sparksTailSizeChange');
+	sparksMinSpeed = document.getElementById('sparksMinSpeed');
+	sparksMaxSpeed = document.getElementById('sparksMaxSpeed');
+	sparksTailSpeedChange = document.getElementById('sparksTailSpeedChange');
+	sparksStartColorR = document.getElementById('sparksStartColorR');
+	sparksStartColorG = document.getElementById('sparksStartColorG');
+	sparksStartColorB = document.getElementById('sparksStartColorB');
+	sparksStartColorA = document.getElementById('sparksStartColorA');
+	sparksColorChangeR = document.getElementById('sparksColorChangeR');
+	sparksColorChangeG = document.getElementById('sparksColorChangeG');
+	sparksColorChangeB = document.getElementById('sparksColorChangeB');
+	sparksColorChangeA = document.getElementById('sparksColorChangeA');
+	
+	
 
 	explodeButton.addEventListener('click', function() {
 		var id = Math.random();
@@ -111,6 +151,13 @@ window.onload = function() {
 			var id = Math.random();
 			var shockwave = new Shockwave(id, 400, 300);
 			shockwaveList[id] = shockwave;
+		}
+		
+		if(sparksCheckbox.checked) {
+			var id = Math.random();
+			var sparks = new Sparks(id, 400, 300);
+			sparksList[id] = sparks;
+			sparks.initParticles();
 		}
 	});
 	
@@ -142,6 +189,15 @@ window.onload = function() {
 			enableShockwaveFields();
 		} else {
 			disableShockwaveFields();
+		}
+	});
+	
+	
+	sparksCheckbox.addEventListener('change', function() {
+		if(this.checked) {
+			enableSparksFields();
+		} else {
+			disableSparksFields();
 		}
 	});
 
@@ -184,6 +240,8 @@ window.onload = function() {
 		shockwaveColorGChange.value = 0;
 		shockwaveColorBChange.value = 0;
 		shockwaveColorAChange.value = 0.1;
+		sparksCheckbox.checked = false;
+		disableSparksFields();
 	});
 	
 	
@@ -225,6 +283,8 @@ window.onload = function() {
 		shockwaveColorGChange.value = 0;
 		shockwaveColorBChange.value = 0;
 		shockwaveColorAChange.value = 0.04;
+		sparksCheckbox.checked = false;
+		disableSparksFields();
 	});
 	
 	
@@ -266,56 +326,81 @@ window.onload = function() {
 		shockwaveColorGChange.value = 0;
 		shockwaveColorBChange.value = 0;
 		shockwaveColorAChange.value = 0.07;
+		sparksCheckbox.checked = false;
+		disableSparksFields();
 	});
 	
 	
 	settings4Button.addEventListener('click', function() {
-		numberOfParticles.value = 50;
+		numberOfParticles.value = 70;
 		lifeTime.value = 30;
-		minStartSize.value = 10;
-		maxStartSize.value = 10;
-		sizeChange.value = 1;
-		minStartSpeed.value = 2;
-		maxStartSpeed.value = 2;
-		speedChange.value = 1;
+		minStartSize.value = 8;
+		maxStartSize.value = 23;
+		sizeChange.value = 0.9;
+		minStartSpeed.value = 1;
+		maxStartSpeed.value = 4;
+		speedChange.value = 0.91;
 		startColorR.value = 255;
-		startColorG.value = 0;
-		startColorB.value = 0;
+		startColorG.value = 255;
+		startColorB.value = 140;
 		startColorA.value = 1;
-		colorRChange.value = 0;
-		colorGChange.value = 0;
-		colorBChange.value = 0;
-		colorAChange.value = 0;
-		secondaryExplosion.checked = false;
-		secondaryExplosionDelay.disabled = true;
-		secondaryExplosionSpan.style.color = '#999';
-		tertiaryExplosion.checked = false;
-		tertiaryExplosionDelay.disabled = true;
-		tertiaryExplosionSpan.style.color = '#999';
-		secondaryExplosionDelay.value = 100;
-		tertiaryExplosionDelay.value = 200;
+		colorRChange.value = 5;
+		colorGChange.value = 30;
+		colorBChange.value = 40;
+		colorAChange.value = 0.07;
+		secondaryExplosion.checked = true;
+		secondaryExplosionDelay.disabled = false;
+		secondaryExplosionSpan.style.color = '#ddd';
+		tertiaryExplosion.checked = true;
+		tertiaryExplosionDelay.disabled = false;
+		tertiaryExplosionSpan.style.color = '#ddd';
+		secondaryExplosionDelay.value = 120;
+		tertiaryExplosionDelay.value = 150;
 		shockwaveCheckbox.checked = true;
 		enableShockwaveFields();
-		shockwaveLifeTime.value = 30;
+		shockwaveLifeTime.value = 50;
 		shockwaveStartSize.value = 20;
-		shockwaveSizeChange.value = 2;
+		shockwaveSizeChange.value = 3;
 		shockwaveStartColorR.value = 100;
 		shockwaveStartColorG.value = 0;
 		shockwaveStartColorB.value = 0;
 		shockwaveStartColorA.value = 1;
-		shockwaveColorRChange.value = 0;
+		shockwaveColorRChange.value = 5;
 		shockwaveColorGChange.value = 0;
 		shockwaveColorBChange.value = 0;
-		shockwaveColorAChange.value = 0;
+		shockwaveColorAChange.value = 0.04;
+		sparksCheckbox.checked = true;
+		enableSparksFields();
+		sparksNumberOfParticles.value = 8;
+		sparksNumberOfTailParticles.value = 15;
+		sparksLifeSpan.value = 50;
+		sparksMinSize.value = 0.5;
+		sparksMaxSize.value = 2;
+		sparksTailSizeChange.value = 0.9;
+		sparksMinSpeed.value = 2;
+		sparksMaxSpeed.value = 6;
+		sparksTailSpeedChange.value = 0.97;
+		sparksStartColorR.value = 200;
+		sparksStartColorG.value = 120;
+		sparksStartColorB.value = 0;
+		sparksStartColorA.value = 1;
+		sparksColorChangeR.value = 4;
+		sparksColorChangeG.value = 6;
+		sparksColorChangeB.value = 0;
+		sparksColorChangeA.value = 0.035;
 	});
 	
 	
 	var animateExplosions = setInterval(function(){
 		ctx.clearRect(0,0,800, 600);
 		
-		//ctx.fillStyle = 'white';
-		//ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
-		//ctx.fillText('Number of shockwaves: ' + Object.keys(shockwaveList).length, 10, 35);
+		/*
+		ctx.fillStyle = 'white';
+		ctx.fillText('Number of explosions: ' + Object.keys(explosionList).length, 10, 20);
+		ctx.fillText('Number of shockwaves: ' + Object.keys(shockwaveList).length, 10, 35);
+		ctx.fillText('Number of sparks: ' + Object.keys(sparksList).length, 10, 50);
+		*/
+		
 		
 		// draw and update shockwaves
 		for (var i in shockwaveList) {
@@ -326,6 +411,18 @@ window.onload = function() {
 			shockwave.lifeTime--;
 			if(shockwave.lifeTime < 0) {
 				delete shockwaveList[i];
+			}
+		}
+		
+		// draw and update sparks
+		for (var i in sparksList) {
+			var sparks = sparksList[i];
+			sparks.drawSparks();
+			sparks.updateParticles();
+			
+			sparks.lifeTime--;
+			if(sparks.lifeTime < 0) {
+				delete sparksList[i];
 			}
 		}
 		
@@ -475,5 +572,130 @@ function disableShockwaveFields() {
 	var shockwaveSpans = document.getElementsByClassName('shockwaveSpan');
 	for (var i = 0; i < shockwaveSpans.length; i++) {
 		shockwaveSpans[i].style.color = '#999';
+	}
+}
+
+
+function enableSparksFields() {
+	sparksNumberOfParticles.disabled = false;
+	sparksNumberOfTailParticles.disabled = false;
+	sparksLifeSpan.disabled = false;
+	sparksMinSize.disabled = false;
+	sparksMaxSize.disabled = false;
+	sparksTailSizeChange.disabled = false;
+	sparksMinSpeed.disabled = false;
+	sparksMaxSpeed.disabled = false;
+	sparksTailSpeedChange.disabled = false;
+	sparksStartColorR.disabled = false;
+	sparksStartColorG.disabled = false;
+	sparksStartColorB.disabled = false;
+	sparksStartColorA.disabled = false;
+	sparksColorChangeR.disabled = false;
+	sparksColorChangeG.disabled = false;
+	sparksColorChangeB.disabled = false;
+	sparksColorChangeA.disabled = false;
+	var sparksSpans = document.getElementsByClassName('sparksSpan');
+	for (var i = 0; i < sparksSpans.length; i++) {
+		sparksSpans[i].style.color = '#ddd';
+	}
+}
+
+
+function disableSparksFields() {
+	sparksNumberOfParticles.disabled = true;
+	sparksNumberOfTailParticles.disabled = true;
+	sparksLifeSpan.disabled = true;
+	sparksMinSize.disabled = true;
+	sparksMaxSize.disabled = true;
+	sparksTailSizeChange.disabled = true;
+	sparksMinSpeed.disabled = true;
+	sparksMaxSpeed.disabled = true;
+	sparksTailSpeedChange.disabled = true;
+	sparksStartColorR.disabled = true;
+	sparksStartColorG.disabled = true;
+	sparksStartColorB.disabled = true;
+	sparksStartColorA.disabled = true;
+	sparksColorChangeR.disabled = true;
+	sparksColorChangeG.disabled = true;
+	sparksColorChangeB.disabled = true;
+	sparksColorChangeA.disabled = true;
+	var sparksSpans = document.getElementsByClassName('sparksSpan');
+	for (var i = 0; i < sparksSpans.length; i++) {
+		sparksSpans[i].style.color = '#999';
+	}
+}
+
+
+
+function SparksParticle(x, y) {
+	this.x = x;
+	this.y = y;
+	this.angle = 0;		
+	this.size = 0;
+	this.speed = 0;
+	this.colorR = sparksStartColorR.value;
+	this.colorG = sparksStartColorG.value;
+	this.colorB = sparksStartColorB.value;
+	this.colorA = 0;
+	this.colorRChange = sparksColorChangeR.value;
+	this.colorGChange = sparksColorChangeG.value;
+	this.colorBChange = sparksColorChangeB.value;
+	this.colorAChange = sparksColorChangeA.value;
+}
+
+
+
+function Sparks(id, x, y) {
+	this.id = id;
+	this.x = x;
+	this.y = y;
+	this.sparksNumberOfParticles = sparksNumberOfParticles.value;
+	this.sparksNumberOfTailParticles = sparksNumberOfTailParticles.value;
+	this.lifeTime = sparksLifeSpan.value;
+	this.particleList = [];
+	
+	
+	this.initParticles = function() {
+		var angleStep = Math.PI*2 / this.sparksNumberOfParticles;
+		
+		for (var n = 0; n < this.sparksNumberOfParticles; n++) {
+			var angle = n * angleStep + Math.random()*angleStep;
+			var size = parseFloat(sparksMinSize.value) + parseFloat(sparksMaxSize.value - sparksMinSize.value) * Math.random();
+			var speed = parseFloat(sparksMinSpeed.value) + parseFloat(sparksMaxSpeed.value - sparksMinSpeed.value) * Math.random();
+			var alpha = sparksStartColorA.value;
+			
+			for (var i = 0; i < this.sparksNumberOfTailParticles; i++) {
+				var particle = new SparksParticle(this.x, this.y);
+				particle.angle = angle;
+				particle.size = size;
+				particle.speed = speed;
+				particle.colorA = alpha;
+				size *= sparksTailSizeChange.value;
+				speed *= sparksTailSpeedChange.value;
+				this.particleList.push(particle);
+			}
+		}
+	}
+	
+	this.drawSparks = function() {
+		for (var i = 0; i < this.particleList.length; i++) {
+			var particle = this.particleList[i];
+			ctx.fillStyle = 'rgba('+ particle.colorR +', '+ particle.colorG +', '+ particle.colorB +', '+ particle.colorA +')';	
+			ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI, false);
+      ctx.fill();
+		}
+	}
+	
+	this.updateParticles = function() {
+		for (var i = 0; i < this.particleList.length; i++) {
+			var particle = this.particleList[i];
+			particle.x += Math.sin(particle.angle) * particle.speed;
+			particle.y += Math.cos(particle.angle) * particle.speed;
+			particle.colorR -= particle.colorRChange;
+			particle.colorG -= particle.colorGChange;
+			particle.colorB -= particle.colorBChange;
+			particle.colorA -= particle.colorAChange;
+		}
 	}
 }
